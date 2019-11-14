@@ -203,6 +203,13 @@ bar {
 }
 
 
+
+# for sound control  
+bindsym XF86AudioRaiseVolume exec amixer set Master playback 5000+  
+bindsym XF86AudioLowerVolume exec amixer set Master playback 5000-  
+bindsym XF86AudioMute exec amixer set Master toggle  
+
+
 #*********************************************电源管理*************************************
 set $mode_system  lock(L) logout(O) reboot(R) shutdown(S) exit(Esc)
 bindsym $mod+c mode "$mode_system"
