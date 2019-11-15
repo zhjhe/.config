@@ -34,7 +34,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+t exec thunar
 
 #运行dmenu
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run
 
 #win+enter运行 terminal 
 bindsym $mod+Return exec i3-sensible-terminal
