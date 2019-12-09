@@ -20,6 +20,7 @@ set $WS0 10: 
 #背景和文字
 font pango:Noto Sans 10
 
+
 #floating模式下按住alt键进行拉拽
 floating_modifier Mod1
 
@@ -175,7 +176,7 @@ client.background       #FFFFFF
 #i3bar设置
 bar {
     i3bar_command i3bar -t
-    height 28
+    height 32 
     #禁止systemtray
     # tray_output none
     # i3bar调用
@@ -224,8 +225,8 @@ mode "$mode_system" {
 
 #********************************************i3-gaps*********************************
 for_window [class="^.*"] border pixel 0
-gaps inner 8
-gaps outer 6
+gaps inner 0 
+gaps outer 0
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
