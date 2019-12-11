@@ -1,10 +1,10 @@
-#!作者：vachester
-#!时间：2016/07/04
-#!邮箱：chester@hit.edu.cn
+# author：vachester
+# date：2016/07/04
+# email：chester@hit.edu.cn
+# changer: Zhenjie He
 
-
-#************************************基本设置*******************************************
-#设置基本的工作区和热键(win)
+#************************************basic config*******************************************
+# config mod key and worspace
 set $mod Mod4
 set $WS1  1:  
 set $WS2  2:  
@@ -17,71 +17,71 @@ set $WS8  8: 
 set $WS9  9:  
 set $WS0 10:  
 
-#背景和文字
+# font config
 font pango:Noto Sans 10
 
 
 #floating模式下按住alt键进行拉拽
 floating_modifier Mod1
 
-#######一些常见绑定
+####### basic key bind
 #prt sc键进行选择性截屏，并且保存在~/Pictures/shot/目录下
 bindsym Print exec shutter -s -o ~/Pictures/shot/%Y-%m-%d-%T.png 
 
-#退出当前程序
+# quit current application
 bindsym $mod+Shift+q kill
 
-#打开thunar文件管理器
-bindsym $mod+t exec thunar
+# exec thunar file manager
+#bindsym $mod+t exec thunar
 
-#运行dmenu
+# exec dmenu
 bindsym $mod+d exec --no-startup-id dmenu_run
 
-#win+enter运行 terminal 
+# win+enter exec terminal 
 bindsym $mod+Return exec i3-sensible-terminal
-#bindsym $mod+Return exec alacritty 
-# win+f 运行 firefox
+# bindsym $mod+Return exec alacritty 
+# win+f exec firefox
 bindsym $mod+f exec firefox
 
-#切换到水平模式
+# switch to hoizontal layout
 bindsym $mod+b split h
 
-#切换到垂直模式
+# switch to verrtical layout
 bindsym $mod+v split v
 
-#全屏
+# toggle fullscreen
 # bindsym $mod+f fullscreen toggle
 
-#切换到floating模式
+# switch to floating mode
 bindsym $mod+Shift+space floating toggle
 
-#聚焦于浮动模式下的窗口
+# focus mode toggle
 bindsym $mod+space focus mode_toggle
 
-#聚焦与父布局
+# focus parent layout 
 bindsym $mod+a focus parent
 
-#三种模式的切换
+# switch mode
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-#重载文件
+# reload i3 config
 bindsym $mod+Shift+c reload
 
-#重启i3
+# restart i3
 bindsym $mod+Shift+r restart
 
-#退出i3
+# exit i3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-#隐藏窗口
+# hide window
 bindsym $mod+Shift+minus move scratchpad
 
-#显示被隐藏的窗口
+# show hidden window
 bindsym $mod+minus scratchpad show
 
-######一些软件设置
+# some application config
 #开机自起compton
 exec --no-startup-id compton -b
 exec_always variety
@@ -90,18 +90,16 @@ exec_always variety
 exec --no-startup-id xset s 0
 exec --no-startup-id xset dpms 6000 8000 9000
 
-#exec xfce4-power-manager
-
-#打开URxvt的同时切换到tab模式
-#for_window [class="URxvt"] layout tabbed
-
-#打开软件时自动移至相应工作区
-#assign [class="xfce4-terminal"] $WS1
-#assign [class="firefox"] $WS2
+# exec xfce4-power-manager
 
 
+# start application auto move to workspace 
+assign [class="xfce4-terminal"] $WS1
+assign [class="firefox"] $WS2
+assign [class="code-oss"] $WS4
 
-#**************************************焦点和窗口移动**************************************
+
+#**************************************focus and move window**************************************
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -122,7 +120,7 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-#****************************************工作区操作**********************************************
+#****************************************workspace operator**********************************************
 bindsym $mod+1 workspace $WS1
 bindsym $mod+2 workspace $WS2
 bindsym $mod+3 workspace $WS3
@@ -147,7 +145,7 @@ bindsym $mod+shift+9 move container to workspace $WS9, workspace $WS9
 bindsym $mod+shift+0 move container to workspace $WS0, workspace $WS0
 
 
-#********************************************更改窗口尺寸**************************************
+#********************************************change window size**************************************
 mode "resize" {
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
@@ -166,8 +164,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-#**************************************************主题设置*********************************************
-# 窗口颜色                边框    背景    文字    提示
+#**************************************************theme*********************************************
+# window color          border  background text tip
 client.focused          #333333 #333333 #FFFFFF #333333
 client.focused_inactive #999999 #999999 #FFFFFF #3399FF
 client.unfocused        #999999 #999999 #FFFFFF #3399FF
@@ -175,28 +173,28 @@ client.urgent           #990000 #990000 #FFFFFF #990000
 client.placeholder      #000000 #000000 #FFFFFF #000000
 client.background       #FFFFFF
 
-#i3bar设置
+# i3bar config
 bar {
     i3bar_command i3bar -t
     height 32 
-    #禁止systemtray
+    # hide systemtray
     # tray_output none
     # i3bar调用
     status_command ~/.config/i3/jconky
-    # 显示位置top/bottom
+    # set position: top/bottom
     position bottom
-    # 是否隐r
+    # show or hide 
     #mode hide
     # 拆解工作区名（隐藏前面的1:2:3:……）
-#    strip_workspace_numbers yes
-    # 定义分隔符∥
+    #strip_workspace_numbers yes
+    # define separator symbol
     separator_symbol "    "
 
     colors {
         background #1010103F
         statusline #FFFFFF
         separator  #3399FF
-        # 工作区颜色         边框    背景    文字
+        # workspace color  border  background text
         focused_workspace  #3297FD #11111100 #FFFFFF
         active_workspace   #FFFFFF #FFFFFF00 #FFFFFF
         inactive_workspace #111111 #11111100 #FFFFFF
@@ -213,7 +211,7 @@ bindsym XF86AudioLowerVolume exec amixer set Master playback 5%-
 bindsym XF86AudioMute exec amixer set Master toggle  
 
 
-#*********************************************电源管理*************************************
+#*********************************************power manager*************************************
 set $mode_system  lock(L) logout(O) reboot(R) shutdown(S) exit(Esc)
 bindsym $mod+c mode "$mode_system"
 mode "$mode_system" {
