@@ -90,12 +90,14 @@ exec_always variety
 exec --no-startup-id xset s 0
 exec --no-startup-id xset dpms 6000 8000 9000
 
+#exec xfce4-power-manager
+
 #打开URxvt的同时切换到tab模式
 #for_window [class="URxvt"] layout tabbed
 
 #打开软件时自动移至相应工作区
-assign [class="xfce4-terminal"] $WS1
-assign [class="firefox"] $WS2
+#assign [class="xfce4-terminal"] $WS1
+#assign [class="firefox"] $WS2
 
 
 
@@ -206,8 +208,8 @@ bar {
 
 
 # for sound control  
-bindsym XF86AudioRaiseVolume exec amixer set Master playback 5000+  
-bindsym XF86AudioLowerVolume exec amixer set Master playback 5000-  
+bindsym XF86AudioRaiseVolume exec amixer set Master playback 5%+  
+bindsym XF86AudioLowerVolume exec amixer set Master playback 5%-  
 bindsym XF86AudioMute exec amixer set Master toggle  
 
 
@@ -225,8 +227,8 @@ mode "$mode_system" {
 
 #********************************************i3-gaps*********************************
 for_window [class="^.*"] border pixel 0
-gaps inner 0 
-gaps outer 0
+gaps inner 4 
+gaps outer 6
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
