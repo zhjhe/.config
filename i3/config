@@ -81,16 +81,20 @@ bindsym $mod+Shift+minus move scratchpad
 # show hidden window
 bindsym $mod+minus scratchpad show
 
-# some application config
-#开机自起compton
+# autostart application 
 exec --no-startup-id compton -b
-exec_always variety
+exec --no-startup-id xfce4-power-manager
+exec variety
+exec --no-startup-id nm-applet
+exec --no-startup-id pamac-tray
+
+
+exec --no-startup-id volumeicon
 
 #去掉屏保功能，将黑屏等待时间置为100分钟
 exec --no-startup-id xset s 0
 exec --no-startup-id xset dpms 6000 8000 9000
 
-# exec xfce4-power-manager
 
 
 # start application auto move to workspace 
@@ -206,9 +210,9 @@ bar {
 
 
 # for sound control  
-bindsym XF86AudioRaiseVolume exec amixer set Master playback 5%+  
-bindsym XF86AudioLowerVolume exec amixer set Master playback 5%-  
-bindsym XF86AudioMute exec amixer set Master toggle  
+#bindsym XF86AudioRaiseVolume exec amixer set Master playback 5%+  
+#bindsym XF86AudioLowerVolume exec amixer set Master playback 5%-  
+#bindsym XF86AudioMute exec amixer set Master toggle  
 
 
 #*********************************************power manager*************************************
@@ -225,8 +229,12 @@ mode "$mode_system" {
 
 #********************************************i3-gaps*********************************
 for_window [class="^.*"] border pixel 0
-gaps inner 4 
-gaps outer 6
+gaps inner 6 
+gaps outer 4 
+
+smart_gaps on
+smart_borders on
+
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
 set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -243,6 +251,7 @@ mode "$mode_gaps_inner" {
         bindsym plus  gaps inner current plus 5
         bindsym minus gaps inner current minus 5
         bindsym 0     gaps inner current set 0
+
 
         bindsym Shift+plus  gaps inner all plus 5
         bindsym Shift+minus gaps inner all minus 5
