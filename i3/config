@@ -82,7 +82,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # autostart application 
-exec --no-startup-id compton -b
+exec --no-startup-id picom -b
 exec --no-startup-id xfce4-power-manager
 exec variety
 exec --no-startup-id nm-applet
