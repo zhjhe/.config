@@ -6,6 +6,8 @@
 #************************************basic config*******************************************
 # config mod key and worspace
 set $mod Mod4
+
+# config workspace title
 set $WS1  1:  
 set $WS2  2:  
 set $WS3  3:  
@@ -20,13 +22,12 @@ set $WS0 10: 
 # font config
 font pango:Noto Sans 10
 
-
-#floating模式下按住alt键进行拉拽
+# Use Mouse+$mod to drag floating windows
 floating_modifier Mod1
 
-####### basic key bind
+# basic key bind
 #prt sc键进行选择性截屏，并且保存在~/Pictures/shot/目录下
-bindsym Print exec shutter -s -o ~/Pictures/shot/%Y-%m-%d-%T.png 
+bindsym Print exec flameshot full -p ~/Pictures/shot/ 
 
 # quit current application
 bindsym $mod+Shift+q kill
@@ -43,6 +44,15 @@ bindsym $mod+Return exec i3-sensible-terminal
 # win+f exec firefox
 bindsym $mod+f exec firefox
 
+# change wallpaper
+bindsym $mod+shift+n exec variety -n
+bindsym $mod+shift+p exec variety -p
+
+# navigate workspaces next
+bindsym $mod+Tab workspace next
+bindsym $mod+shift+Tab workspace prev
+
+
 # switch to hoizontal layout
 bindsym $mod+b split h
 
@@ -50,7 +60,7 @@ bindsym $mod+b split h
 bindsym $mod+v split v
 
 # toggle fullscreen
-# bindsym $mod+f fullscreen toggle
+bindsym $mod+shift+f fullscreen toggle
 
 # switch to floating mode
 bindsym $mod+Shift+space floating toggle
