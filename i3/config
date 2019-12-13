@@ -1,7 +1,7 @@
 # author：vachester
 # date：2016/07/04
 # email：chester@hit.edu.cn
-# changer: Zhenjie He
+# committer: Zhenjie He
 
 #************************************basic config*******************************************
 # config mod key and worspace
@@ -26,7 +26,7 @@ font pango:Noto Sans 10
 floating_modifier Mod1
 
 # basic key bind
-#prt sc键进行选择性截屏，并且保存在~/Pictures/shot/目录下
+# prt screen key exec flameshot and save to ~/Pictures/shot/
 bindsym Print exec flameshot full -p ~/Pictures/shot/ 
 
 # quit current application
@@ -39,7 +39,8 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id dmenu_run
 
 # win+enter exec terminal 
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec st -e zsh 
+#bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec alacritty 
 # win+f exec firefox
 bindsym $mod+f exec firefox
@@ -190,22 +191,23 @@ client.background       #FFFFFF
 # i3bar config
 bar {
     i3bar_command i3bar -t
-    height 32 
+    #height 32 
     # hide systemtray
     # tray_output none
-    # i3bar调用
-    status_command ~/.config/i3/jconky
+    tray_padding 0
+    #e i3bar调用
+    setatus_command ~/.config/i3/jconky
     # set position: top/bottom
     position bottom
     # show or hide 
     #mode hide
-    # 拆解工作区名（隐藏前面的1:2:3:……）
+    # strip workspace name, hide the number
     #strip_workspace_numbers yes
     # define separator symbol
     separator_symbol "    "
 
     colors {
-        background #1010103F
+        background #1010107F
         statusline #FFFFFF
         separator  #3399FF
         # workspace color  border  background text
@@ -217,7 +219,7 @@ bar {
     }
 }
 
-
+bindsym $mod+m bar mode toggle
 
 # for sound control  
 #bindsym XF86AudioRaiseVolume exec amixer set Master playback 5%+  
@@ -282,6 +284,4 @@ mode "$mode_gaps_outer" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
-
-
 

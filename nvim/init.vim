@@ -14,47 +14,29 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 set backspace=indent,eol,start
-set hidden
-set laststatus=2
-set display=lastline
 
-set showmode
-set showcmd
+set cursorline
+set report=0
 
-set incsearch
-set hlsearch
-
-set ttyfast
-set lazyredraw
+set wildignore=*.swp,*.bak,*.pyc,*.obj,*.o,*.class
+set vb
 
 set splitbelow
 set splitright
-
-set cursorline
-set wrapscan
-set report=0
-set synmaxcol=200
-
-set wildignore=*.swp,*.bak,*.pyc,*.obj,*.o,*.class
-set ttimeout
-set ttimeoutlen=100
-set cmdheight=1
-set vb
-
 
 set pyxversion=3
 
 " ===
 " auto install plug
 " ===
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
         Plug 'mhinz/vim-startify'
         Plug 'tpope/vim-fugitive'
         Plug 'mbbill/undotree'
@@ -70,14 +52,20 @@ call plug#begin('~/.vim/plugged')
         Plug 'vim-airline/vim-airline'
         Plug 'vim-airline/vim-airline-themes'
         Plug 'Shougo/unite.vim'
-        Plug 'Shougo/vimfiler'
+        Plug 'Shougo/vimfiler.vim'
+        " Snippets
+        Plug 'SirVer/ultisnips'
+        Plug 'honza/vim-snippets'
         if has('nvim')
                 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemote'}
+                Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
         else
                 Plug 'Shougo/deoplete.nvim'
+                Plug 'Shougo/defx.nvim'
                 Plug 'roxma/nvim-yarp'
                 Plug 'roxma/vim-hug-neovim-rpc'
         endif
+
         Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
         Plug 'deoplete-plugins/deoplete-jedi'
 call plug#end()
@@ -89,6 +77,7 @@ call plug#end()
 set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 color deus
+hi Normal guibg=none
 "color gruvbox
 "let g:gruvbox_contrast_dark = 'soft'
 "colorscheme dracula
@@ -119,13 +108,11 @@ inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 " ===
 " LeaderF config
 " ===
-let g:Lf_ShortcutF = '<c-p>'
-let g:Lf_ShortcutB = '<m-n>'
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_WindowHeight = 0.40
+let g:Lf_CacheDirectory = expand('~/.config/nvim/cache')
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
@@ -166,11 +153,6 @@ noremap <c-e> :VimFilerSplit -winwidth=35 -toggle -simple -no-quit<cr>
 " ===
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
-" ===
-" === Python-syntax
-" ===
-let g:python_highlight = 1
-
 
 " ===
 " === Undotree
@@ -183,7 +165,7 @@ let g:undotree_ShortIndicators = 1
 " ===
 " === Colorizer
 " ===
-let g:colorizer_syntax = 1
+autocmd BufNewFile,BufRead *.css,*.html,*.htm  :ColorHighlight!
 
 
 " ===
@@ -207,6 +189,10 @@ noremap <LEADER>st :Startify<CR>
 noremap <C-c> "+y
 "noremap <C-v> "+gp
 
+
+noremap <LEADER>t :LeaderfFunction<CR>
+
+noremap <LEADER>u :UndotreeToggle<CR>
 " ===
 " === Window management
 " ===
@@ -224,9 +210,11 @@ noremap <LEADER>l <C-w>l
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
 
+noremap <LEADER>/ :term<CR>
+tnoremap <Esc> <C-\><C-n>
 
 " ===
-" 
+" === call CompileRunGcc
 " ===
 nnoremap <Leader>r :call CompileRunGcc()<CR>
 

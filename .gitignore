@@ -1,8 +1,7 @@
 *
 !.gitignore
-!/**/
 !/i3/*
 !/ranger/*
-!/nvim/*
+!/nvim/init.vim
 !/neofetch/*
 !/fish/*
