@@ -192,11 +192,13 @@ client.background       #FFFFFF
 bar {
     i3bar_command i3bar -t
     #height 32 
+    font pango: Noto Sans 10
     # hide systemtray
     # tray_output none
     tray_padding 0
     #e i3bar调用
-    setatus_command ~/.config/i3/jconky
+    
+    status_command ~/.config/i3/jconky
     # set position: top/bottom
     position bottom
     # show or hide 

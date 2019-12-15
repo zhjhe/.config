@@ -100,8 +100,8 @@ call deoplete#custom#source('_',
 " 补全结束或离开插入模式时，关闭预览窗口
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<tab>"
+"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+"inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 
 " let g:deoplete#sources#jedi#python_path = 'python'
 
