@@ -39,7 +39,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id dmenu_run
 
 # win+enter exec terminal 
-bindsym $mod+Return exec st -e zsh 
+bindsym $mod+Return exec --no-startup-id st 
 #bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec alacritty 
 # win+f exec firefox
@@ -95,7 +95,7 @@ bindsym $mod+minus scratchpad show
 # autostart application 
 exec --no-startup-id picom -b
 exec --no-startup-id xfce4-power-manager
-exec variety
+exec --no-startup-id variety
 exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
 
@@ -103,8 +103,8 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id volumeicon
 
 #去掉屏保功能，将黑屏等待时间置为100分钟
-exec --no-startup-id xset s 0
-exec --no-startup-id xset dpms 6000 8000 9000
+#exec --no-startup-id xset s 0
+#exec --no-startup-id xset dpms 600
 
 
 
