@@ -1,44 +1,53 @@
 general {
-        output_format = "i3bar"
+        #output_format = "i3bar"
         colors = true
+        color_good = "#A4DC6A"
+        color_degraded = "#B987D9"
+        color_bad= "#FF797B"
         interval = 5
+        separator = " "
 }
 
-order += "ipv6"
-order += "disk /"
-order += "run_watch DHCP"
-order += "run_watch VPNC"
-order += "path_exists VPN"
-order += "wireless wlan0"
+# order += "ipv6"
+# order += "run_watch DHCP"
+# order += "run_watch VPNC"
+# order += "path_exists VPN"
+order += "wireless wlp2s0"
 order += "ethernet eth0"
-order += "battery 0"
+order += "cpu_usage"
 order += "cpu_temperature 0"
 order += "memory"
-order += "load"
-order += "tztime local"
-order += "tztime berlin"
+order += "disk /"
+order += "battery 0"
+# order += "load"
+order += "time"
+# order += "tztime berlin"
 
-wireless wlan0 {
+wireless wlp2s0 {
         align = "left"
-        format_up = " W: (%quality at %essid, %bitrate) %ip"
-        format_down = " W: down"
+        format_up = "  %bitrate  %ip"
+        format_down = ""
 }
 
 ethernet eth0 {
         align = "left"
-        format_up = " E: %ip (%speed)"
-        format_down = " E: down"
+        format_up = "%ip (%speed)"
+        format_down = ""
 }
 
 battery 0 {
-        format = "%status %percentage %remaining %emptytime"
+        format = "%status %percentage|%remaining"
         format_down = "No battery"
-        status_chr = " CHR"
-        status_bat = " BAT"
-        status_unk = " UNK"
-        status_full = " FULL"
+        status_chr = " " 
+        status_bat = " "
+        status_unk = " "
+        status_full = " "
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
+}
+
+cpu_usage {
+    format = " %usage"
 }
 
 run_watch DHCP {
@@ -55,23 +64,22 @@ path_exists VPN {
         path = "/proc/sys/net/ipv4/conf/tun0"
 }
 
-tztime local {
-        format = " %Y-%m-%d  %H:%M:%S"
-        hide_if_equals_localtime = true
+time {
+        format = " %m-%d    %H:%M"
 }
 
 tztime berlin {
-        format = " %Y-%m-%d  %H:%M:%S %Z"
+        format = " %Y-%m-%d  %H:%M"
         timezone = "Europe/Berlin"
 }
 
 load {
-        format = " %5min"
+        format = "  %5min"
 }
 
 cpu_temperature 0 {
-        format = " T: %degrees °C"
-        path = "/sys/devices/platform/coretemp.0/temp1_input"
+        format = " %degrees °C"
+        path = "/sys/class/thermal/thermal_zone0/temp"
 }
 
 memory {
@@ -81,7 +89,7 @@ memory {
 }
 
 disk "/" {
-        format = " %free"
+        format = " %percentage_used" 
 }
 
 read_file uptime {
