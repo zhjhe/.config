@@ -19,11 +19,13 @@ order += "tztime local"
 order += "tztime berlin"
 
 wireless wlan0 {
+        align = "left"
         format_up = " W: (%quality at %essid, %bitrate) %ip"
         format_down = " W: down"
 }
 
 ethernet eth0 {
+        align = "left"
         format_up = " E: %ip (%speed)"
         format_down = " E: down"
 }
