@@ -1,11 +1,10 @@
 general {
-        #output_format = "i3bar"
+        output_format = "i3bar"
         colors = true
         color_good = "#A4DC6A"
         color_degraded = "#B987D9"
         color_bad= "#FF797B"
         interval = 5
-        separator = " "
 }
 
 # order += "ipv6"
@@ -19,19 +18,19 @@ order += "cpu_temperature 0"
 order += "memory"
 order += "disk /"
 order += "battery 0"
-# order += "load"
+order += "load"
 order += "time"
 # order += "tztime berlin"
 
 wireless wlp2s0 {
-        align = "left"
-        format_up = "  %bitrate  %ip"
+        # align = "left"
+        format_up = "  %quality %bitrate %essid"
         format_down = ""
 }
 
 ethernet eth0 {
         align = "left"
-        format_up = "%ip (%speed)"
+        format_up = "% ip (%speed)"
         format_down = ""
 }
 
@@ -44,6 +43,8 @@ battery 0 {
         status_full = " "
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
+        format_down = ""
+        integer_battery_capacity = true
 }
 
 cpu_usage {
@@ -80,6 +81,8 @@ load {
 cpu_temperature 0 {
         format = " %degrees °C"
         path = "/sys/class/thermal/thermal_zone0/temp"
+        max_threshold = 65
+        format_above_threshold = " Warning T above threshold: %degrees °C"
 }
 
 memory {
@@ -89,7 +92,7 @@ memory {
 }
 
 disk "/" {
-        format = " %percentage_used" 
+        format = " %percentage_used"
 }
 
 read_file uptime {
