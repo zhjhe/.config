@@ -46,8 +46,8 @@ bindsym $mod+Return exec --no-startup-id st
 bindsym $mod+f exec firefox
 
 # change wallpaper
-bindsym $mod+shift+n exec variety -n
-bindsym $mod+shift+p exec variety -p
+bindsym $mod+shift+n exec --no-startup variety -n
+bindsym $mod+shift+p exec --no-startup variety -p
 
 # navigate workspaces next
 bindsym $mod+Tab workspace next
@@ -96,15 +96,15 @@ bindsym $mod+minus scratchpad show
 exec --no-startup-id picom -b
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id variety
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 exec --no-startup-id pamac-tray
 
 
-exec --no-startup-id volumeicon
+#exec --no-startup-id volumeicon
 
-#去掉屏保功能，将黑屏等待时间置为100分钟
-#exec --no-startup-id xset s 0
-#exec --no-startup-id xset dpms 600
+#去掉屏保功能，将黑屏等待时间置为600 seconds
+exec --no-startup-id xset s 0
+exec --no-startup-id xset dpms 600 900 
 
 
 
@@ -113,6 +113,7 @@ assign [class="xfce4-terminal"] $WS1
 assign [class="firefox"] $WS2
 assign [class="code-oss"] $WS4
 
+#for_window [class="ss-qt5"] floating enable
 
 #**************************************focus and move window**************************************
 bindsym $mod+h focus left
@@ -226,10 +227,13 @@ bar {
 bindsym $mod+m bar mode toggle
 
 # for sound control  
-#bindsym XF86AudioRaiseVolume exec amixer set Master playback 5%+  
-#bindsym XF86AudioLowerVolume exec amixer set Master playback 5%-  
-#bindsym XF86AudioMute exec amixer set Master toggle  
+bindsym XF86AudioRaiseVolume exec amixer set Master playback 5%+  
+bindsym XF86AudioLowerVolume exec amixer set Master playback 5%-  
+bindsym XF86AudioMute exec amixer set Master toggle  
 
+# Sreen brightness controls
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 100 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 100 # decrease screen brightness
 
 #*********************************************power manager*************************************
 set $mode_system  lock(L) logout(O) reboot(R) shutdown(S) exit(Esc)
