@@ -193,18 +193,20 @@ bar {
     i3bar_command i3bar -t
     #height 32 
     font pango: Noto Sans 10
+    
     # hide systemtray
     # tray_output none
     tray_padding 0
-    #e i3bar调用
     
+    # i3bar调用
+    # status_command i3status
     status_command ~/.config/i3/jconky
     # set position: top/bottom
     position bottom
     # show or hide 
-    #mode hide
+    # mode hide
     # strip workspace name, hide the number
-    #strip_workspace_numbers yes
+    # strip_workspace_numbers yes
     # define separator symbol
     separator_symbol "    "
 
