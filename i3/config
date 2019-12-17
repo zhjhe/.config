@@ -199,8 +199,8 @@ bar {
     tray_padding 0
     
     # i3bar调用
-    status_command i3status
-    #status_command ~/.config/i3/jconky
+    #status_command i3status
+    status_command ~/.config/i3/jconky
     # set position: top/bottom
     position bottom
     # show or hide 
@@ -212,7 +212,7 @@ bar {
 
     colors {
         background #1010109F
-        statusline #A4DC6A
+        statusline #ffffff
         separator  #FF9D17
         # workspace color  border  background text
         focused_workspace  #3297FD #11111100 #FFFFFF
