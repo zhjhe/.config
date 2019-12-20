@@ -18,7 +18,7 @@ order += "cpu_temperature 0"
 order += "memory"
 order += "disk /"
 order += "battery 0"
-order += "load"
+/*order += "load"*/
 order += "time"
 order += "volume master"
 # order += "tztime berlin"
@@ -36,16 +36,17 @@ ethernet eth0 {
 }
 
 battery 0 {
-        format = "%status %percentage|%remaining"
+        format = "%status %percentage (%remaining)"
         format_down = "No battery"
         status_chr = " " 
         status_bat = " "
         status_unk = " "
         status_full = " "
         path = "/sys/class/power_supply/BAT%d/uevent"
-        low_threshold = 10
         format_down = ""
         integer_battery_capacity = true
+        low_threshold = 20
+        threshold_type = percentage
 }
 
 cpu_usage {
@@ -67,7 +68,7 @@ path_exists VPN {
 }
 
 time {
-        format = " %m-%d    %H:%M"
+        format = " %D %a    %H:%M"
 }
 
 tztime berlin {

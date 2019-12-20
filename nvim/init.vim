@@ -227,5 +227,7 @@ func! CompileRunGcc()
         set splitbelow
         :sp
         :term time go run %
+    elseif &filetype == 'markdown'
+        :!google-chrome-stable %
     endif
 endfunc

@@ -35,6 +35,8 @@ bindsym $mod+Shift+q kill
 # exec thunar file manager
 #bindsym $mod+t exec thunar
 
+# exec rofi -show modi
+bindsym $mod+r exec --no-startup-id rofi -show combi
 # exec dmenu
 bindsym $mod+d exec --no-startup-id dmenu_run
 
@@ -44,10 +46,10 @@ bindsym $mod+Return exec --no-startup-id st
 # bindsym $mod+Return exec alacritty 
 # win+f exec firefox
 bindsym $mod+f exec firefox
-
+bindsym $mod+c exec google-chrome-stable
 # change wallpaper
-bindsym $mod+shift+n exec --no-startup variety -n
-bindsym $mod+shift+p exec --no-startup variety -p
+bindsym $mod+shift+n exec --no-startup-id variety -n
+bindsym $mod+shift+p exec --no-startup-id variety -p
 
 # navigate workspaces next
 bindsym $mod+Tab workspace next
@@ -110,7 +112,8 @@ exec --no-startup-id xset dpms 600 900
 
 # start application auto move to workspace 
 assign [class="xfce4-terminal"] $WS1
-assign [class="firefox"] $WS2
+#assign [class="firefox"] $WS2
+assign [class="chrome"] $WS2
 assign [class="code-oss"] $WS4
 
 #for_window [class="ss-qt5"] floating enable
@@ -177,17 +180,18 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+shift+w mode "resize"
 
 
 #**************************************************theme*********************************************
 # window color          border  background text tip
-client.focused          #333333 #333333 #FFFFFF #333333
-client.focused_inactive #999999 #999999 #FFFFFF #3399FF
-client.unfocused        #999999 #999999 #FFFFFF #3399FF
-client.urgent           #990000 #990000 #FFFFFF #990000
-client.placeholder      #000000 #000000 #FFFFFF #000000
-client.background       #FFFFFF
+#  $i3-theme-window
+#client.focused          #333333 #333333 #FFFFFF #333333
+#client.focused_inactive #999999 #999999 #FFFFFF #3399FF
+#client.unfocused        #999999 #999999 #FFFFFF #3399FF
+#client.urgent           #990000 #990000 #FFFFFF #990000
+#client.placeholder      #000000 #000000 #FFFFFF #000000
+#client.background       #FFFFFF
 
 # i3bar config
 bar {
@@ -196,7 +200,7 @@ bar {
     #font pango: Noto Sans 10
     
     # hide systemtray
-    # tray_output none
+    tray_output none
     tray_padding 0
     
     # i3bar调用
@@ -211,20 +215,30 @@ bar {
     # define separator symbol
     separator_symbol "    "
 
-    colors {
-        background #1010109F
-        statusline #A4DC6A
-        separator  #FF9D17
-        # workspace color  border  background text
-        focused_workspace  #3297FD #11111100 #FFFFFF
-        active_workspace   #FFFFFF #FFFFFF00 #FFFFFF
-        inactive_workspace #111111 #11111100 #FFFFFF
-        urgent_workspace   #990000 #11111100 #FFFFFF
-        binding_mode       #990000 #99000000 #FFFFFF
-    }
+
+colors {
+	background #504945
+	statusline #d5c4a1
+	separator #3c3836 
+	focused_workspace #3c3836 #32302f #fabd2f
+	active_workspace #3c3836 #504945 #d5c4a1
+	inactive_workspace #3c3836 #504945 #d5c4a1
+	urgent_workspace   #7c6f64 #fabd2f #3c3836
+}
+   # colors {
+   #     background #1010109F
+   #     statusline #A4DC6A
+   #     separator  #FF9D17
+   #     # workspace color  border  background text
+   #     focused_workspace  #3297FD #11111100 #FFFFFF
+   #     active_workspace   #FFFFFF #FFFFFF00 #FFFFFF
+   #     inactive_workspace #111111 #11111100 #FFFFFF
+   #     urgent_workspace   #990000 #11111100 #FFFFFF
+   #     binding_mode       #990000 #99000000 #FFFFFF
+   # }
 }
 
-bindsym $mod+m bar mode toggle
+bindsym $mod+shift+m bar mode toggle
 
 # for sound control  
 bindsym XF86AudioRaiseVolume exec amixer set Master playback 5%+  
@@ -237,7 +251,7 @@ bindsym XF86AudioMute exec amixer set Master toggle
 
 #*********************************************power manager*************************************
 set $mode_system  lock(L) logout(O) reboot(R) shutdown(S) exit(Esc)
-bindsym $mod+c mode "$mode_system"
+bindsym $mod+shift+s mode "$mode_system"
 mode "$mode_system" {
 	bindsym l exec --no-startup-id i3lock -c '#000000', mode "default"
 	bindsym o exec --no-startup-id i3-msg exit, mode "default"
