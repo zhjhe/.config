@@ -200,7 +200,7 @@ bar {
     #font pango: Noto Sans 10
     
     # hide systemtray
-    tray_output none
+    #tray_output none
     tray_padding 0
     
     # i3bar调用

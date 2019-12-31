@@ -54,8 +54,8 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'Shougo/unite.vim'
         Plug 'Shougo/vimfiler.vim'
         " Snippets
-        Plug 'SirVer/ultisnips'
-        Plug 'honza/vim-snippets'
+        "Plug 'SirVer/ultisnips'
+        "Plug 'honza/vim-snippets'
         if has('nvim')
                 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemote'}
                 Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
@@ -77,7 +77,7 @@ call plug#end()
 set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 color deus
-hi Normal guibg=none
+"hi Normal guibg=none
 "color gruvbox
 "let g:gruvbox_contrast_dark = 'soft'
 "colorscheme dracula
@@ -100,8 +100,8 @@ call deoplete#custom#source('_',
 " 补全结束或离开插入模式时，关闭预览窗口
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-"inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-"inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<tab>"
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 
 " let g:deoplete#sources#jedi#python_path = 'python'
 
